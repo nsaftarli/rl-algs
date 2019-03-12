@@ -4,22 +4,13 @@ UP = 0
 RIGHT = 1
 DOWN = 2
 LEFT  = 3
+
 # For modeling the unknown transition probabilities
 def createStochastic(p1, p2):
     p3 = (1 - p1 - p2) / 2
     actionStoN = {'up': 0, 'right': 1, 'down': 2, 'left': 3}
     actionNtoS = ['up', 'right', 'down', 'left']
-    UP = 0
-    RIGHT = 1
-    DOWN = 2
-    LEFT  = 3
 
-    start_action_table = np.zeros((10, 10, 4))
-    # Transitions modeled by [s, a, s']
-    transition_probs = np.zeros((100, 4, 100))
-
-    # # Set these first
-    # edges = [[], [], [], []]
     edge_states = []
     states = list(range(0, 100))
     for state in states:
@@ -32,43 +23,11 @@ def createStochastic(p1, p2):
         if isLeftCol(state):
             edge_states.append(state)
 
-    # print(edge_states)
     unique, counts = np.unique(edge_states, return_counts=True)
     unique_edge_states = dict(zip(unique, counts))
     print(unique_edge_states)
 
-    # # Overwrite corners
-    # corners = [[], [], [], []]
-    # for state in states:
-    #     if isTopRow(state) and isRightCol(state):
-    #         corners[0].append(state)
-    #     if isRightCol(state) and isBottomRow(state):
-    #         corners[1].append(state)
-    #     if isBottomRow(state) and isLeftCol(state):
-    #         corners[2].append(state)
-    #     if isLeftCol(state) and isTopRow(state):
-    #         corners[3].append(state)
-
-    cantGoUp = []
-    cantGoRight = []
-    cantGoDown = []
-    cantGoLeft = []
-    for state in states:
-        if hasWallNorth(state):
-            cantGoUp.append(state)
-        if hasWallEast(state):
-            cantGoRight.append(state)
-        if hasWallSouth(state):
-            cantGoDown.append(state)
-        if hasWallWest(state):
-            cantGoLeft.append(state)
-    print("Up blocked: ", cantGoUp)
-    print("Right blocked: ", cantGoRight)
-    print("Down blocked: ", cantGoDown)
-    print("Left blocked: ", cantGoLeft)
-
     # Now for the actual transition probabilities. Suppose grid of s a s'
-
     probs = np.zeros((100, 4, 100))
     for state in states:
         for direction in range(4):
@@ -79,25 +38,25 @@ def createStochastic(p1, p2):
             moveAdjacent = possNextStates[2]
 
             # If goal s' possible to reach, p1 specifies probability of transition
+            # If goal s' possible to reach, p2 specifies probability of self-transition
             if moveGoal != -1:
                 probs[state, direction, moveGoal] = p1
                 probs[state, direction, state] = p2
-
             else:
+                # If goal s' not possible to reach, self-transition prob is p1 + p2
                 probs[state, direction, moveGoal] = 0
                 probs[state, direction, state] = p1 + p2
 
+            # Do probabilities for adjacent moves
             nAdjacent = len(moveAdjacent)
             p3 = (1 - p1 - p2)/2 if nAdjacent == 2 else (1 - p1 - p2)
             for adj in moveAdjacent:
                 probs[state, direction, adj] = p3
 
+    # Set terminal state
     probs[9, :, :] = 0
     probs[9, :, 9] = 1
-    print(probs)
     return probs
-            
-
 
 
 def possibleNextStates(state, action):
@@ -155,7 +114,6 @@ def getProbNextStates(state, action, p1, p2, p3):
 
 
 def getAdjacentStates(state, action):
-    print("ACTION IS: ", action)
     if action == UP:
         return getUpwardsAdjacents(state)
     elif action == RIGHT:
@@ -220,10 +178,8 @@ def getDownwardsAdjacents(state):
     else:
         stateDown = getDownwardsOf(state)
         if hasWallEast(stateDown):
-            print("HAS WALL EAST")
             return [stateDown - 1]
         if hasWallWest(stateDown):
-            print("HAS WALL WEST")
             return [stateDown + 1]
         else:
             return [stateDown - 1, stateDown + 1]
