@@ -7,10 +7,10 @@ LEFT  = 3
 
 # For modeling the unknown transition probabilities
 def createStochastic(p1, p2):
-    p3 = (1 - p1 - p2) / 2
     actionStoN = {'up': 0, 'right': 1, 'down': 2, 'left': 3}
     actionNtoS = ['up', 'right', 'down', 'left']
 
+    # Used for getting all the states that are along edges
     edge_states = []
     states = list(range(0, 100))
     for state in states:
@@ -25,9 +25,10 @@ def createStochastic(p1, p2):
 
     unique, counts = np.unique(edge_states, return_counts=True)
     unique_edge_states = dict(zip(unique, counts))
-    print(unique_edge_states)
+    # print(unique_edge_states)
+    #######################################################################
 
-    # Now for the actual transition probabilities. Suppose grid of s a s'
+    # Transition probabilities. Suppose grid of s a s'
     probs = np.zeros((100, 4, 100))
     for state in states:
         for direction in range(4):
@@ -39,12 +40,11 @@ def createStochastic(p1, p2):
 
             # If goal s' possible to reach, p1 specifies probability of transition
             # If goal s' possible to reach, p2 specifies probability of self-transition
-            if moveGoal != -1:
+            if moveGoal is not None:
                 probs[state, direction, moveGoal] = p1
                 probs[state, direction, state] = p2
             else:
                 # If goal s' not possible to reach, self-transition prob is p1 + p2
-                probs[state, direction, moveGoal] = 0
                 probs[state, direction, state] = p1 + p2
 
             # Do probabilities for adjacent moves
@@ -60,14 +60,20 @@ def createStochastic(p1, p2):
 
 
 def possibleNextStates(state, action):
+    # Possible next states starts off as empty
     states = []
+    # If it's possible to reach the goal state (if the goal state doesn't go off the board)
+    # Append it
     if possibleGoal(state, action):
         goalState = getNextState(state, action)
         states.append(goalState)
+    # Otherwise append None
     else:
-        states.append(-1)
+        states.append(None)
 
+    # Append this state since self transition is always possible
     states.append(state)
+    # Get adjacent state(s) which can be 1 or 2 and append them
     adjacents = getAdjacentStates(state, action)
     # [states.append(i) for i in adjacents]
     states.append(adjacents)
