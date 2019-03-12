@@ -36,7 +36,6 @@ def createStochastic(p1, p2):
     unique, counts = np.unique(edge_states, return_counts=True)
     unique_edge_states = dict(zip(unique, counts))
     print(unique_edge_states)
-    return
 
     # # Overwrite corners
     # corners = [[], [], [], []]
@@ -76,15 +75,29 @@ def createStochastic(p1, p2):
             possNextStates = possibleNextStates(state, direction)
 
             moveGoal = possNextStates[0]
-            noMove = possNextStates[1]
+            moveSelf = possNextStates[1]
             moveAdjacent = possNextStates[2]
 
             # If goal s' possible to reach, p1 specifies probability of transition
             if moveGoal != -1:
                 probs[state, direction, moveGoal] = p1
+                probs[state, direction, state] = p2
 
-            # Probability of self transition depends on whether or not state is edge case
-            # probs[state, direction, noMove] = 
+            else:
+                probs[state, direction, moveGoal] = 0
+                probs[state, direction, state] = p1 + p2
+
+            nAdjacent = len(moveAdjacent)
+            p3 = (1 - p1 - p2)/2 if nAdjacent == 2 else (1 - p1 - p2)
+            for adj in moveAdjacent:
+                probs[state, direction, adj] = p3
+
+    probs[9, :, :] = 0
+    probs[9, :, 9] = 1
+    print(probs)
+    return probs
+            
+
 
 
 def possibleNextStates(state, action):
