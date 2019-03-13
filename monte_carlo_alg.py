@@ -1,4 +1,5 @@
 import numpy as np
+import time
 from probs import *
 from state_rewards import *
 from action_select import *
@@ -21,7 +22,11 @@ def monte_carlo_alg(p1, p2):
     # Policy is randomly initialized to epsilon-soft and is (100, 4)
     pi_sa = init_policy(epsilon=EPSILON)
 
-    generate_episode(pi_sa, transition_table, reward_table)
+    episode = generate_episode(pi_sa, transition_table, reward_table)
+    while episode is None:
+        episode = generate_episode(pi_sa, transition_table, reward_table)
+
+
 
 
 def generate_episode(policy, probs, rewards):
@@ -29,8 +34,10 @@ def generate_episode(policy, probs, rewards):
     states = []
     # Randomly pick a state to start in
     state = np.random.randint(0, 100)
+    steps = 0
     # While not at the terminal state
     while state != 9:
+        steps += 1
         states.append(state)
         # Pick the set of actions indexed by the state
         actions = policy[state]
@@ -40,7 +47,17 @@ def generate_episode(policy, probs, rewards):
         episode.append((state, action))
         # Get the next state according to current state, action, and board dynamics
         state = get_next_state(state, action, probs)
+
+        if steps >= 30000:
+            print("RESTARTING")
+            time.sleep(1)
+            return None
+
+    episode.append((state, action))
+    states.append(state)
     print(states)
+    print("STEPS TAKEN: ", steps)
+    return episode
 
 def get_next_state(state, action, probs):
     # Get the list of next states possible
