@@ -37,19 +37,25 @@ def createStochastic(p1, p2):
             moveGoal = possNextStates[0]
             moveSelf = possNextStates[1]
             moveAdjacent = possNextStates[2]
+            nAdjacent = len(moveAdjacent)
+            p3 = (1 - p1 - p2)/nAdjacent
 
             # If goal s' possible to reach, p1 specifies probability of transition
             # If goal s' possible to reach, p2 specifies probability of self-transition
             if moveGoal is not None:
-                probs[state, direction, moveGoal] = p1
+                if nAdjacent == 2:
+                    probs[state, direction, moveGoal] = p1
+                else:
+                    probs[state, direction, moveGoal] = p1 + (1 - p1 - p2)/2
                 probs[state, direction, state] = p2
             else:
                 # If goal s' not possible to reach, self-transition prob is p1 + p2
-                probs[state, direction, state] = p1 + p2
+                if nAdjacent == 2:
+                    probs[state, direction, state] = p1 + p2
+                else:
+                    probs[state, direction, state] = p1 + p2 + (1 - p1 - p2)/2
 
             # Do probabilities for adjacent moves
-            nAdjacent = len(moveAdjacent)
-            p3 = (1 - p1 - p2)/2 if nAdjacent == 2 else (1 - p1 - p2)
             for adj in moveAdjacent:
                 probs[state, direction, adj] = p3
 
