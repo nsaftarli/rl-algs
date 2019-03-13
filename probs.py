@@ -1,32 +1,16 @@
 import numpy as np
+from utils import *
 
 UP = 0
 RIGHT = 1
 DOWN = 2
-LEFT  = 3
+LEFT = 3
+
 
 # For modeling the unknown transition probabilities
 def createStochastic(p1, p2):
-    actionStoN = {'up': 0, 'right': 1, 'down': 2, 'left': 3}
-    actionNtoS = ['up', 'right', 'down', 'left']
 
-    # Used for getting all the states that are along edges
-    edge_states = []
     states = list(range(0, 100))
-    for state in states:
-        if isTopRow(state):
-            edge_states.append(state)
-        if isRightCol(state):
-            edge_states.append(state)
-        if isBottomRow(state):
-            edge_states.append(state)
-        if isLeftCol(state):
-            edge_states.append(state)
-
-    unique, counts = np.unique(edge_states, return_counts=True)
-    unique_edge_states = dict(zip(unique, counts))
-    # print(unique_edge_states)
-    #######################################################################
 
     # Transition probabilities. Suppose grid of s a s'
     probs = np.zeros((100, 4, 100))
@@ -214,103 +198,6 @@ def getLeftwardsAdjacents(state):
         else:
             return [stateLeft - 10, stateLeft + 10]
 
-
-def setEdges(grid, edges, p1, p2, p3):
-    for edge in edges[0]:
-        # Set probability for up from top row
-        pass
-    for edge in edges[1]:
-        # Set prob for right from right col
-        pass
-    for edge in edges[2]:
-        # Set prob for down from bottom row
-        pass
-    for edge in edges[3]:
-        # Set prob for left from left col
-        pass
-
-    return newGrid
-
-
-def setCorners(grid, corners, p1, p2, p3):
-    for corner in corners[0]:
-        # Set for top-right
-        pass
-    for corner in corners[1]:
-        # Set for bottom-right
-        pass
-    for corner in corners[2]:
-        # Set for bottom-left
-        pass
-    for corner in corners[3]:
-        # Set for top-left
-        pass
-
-    return newGrid
-
-
-def getUpwardsOf(state_num):
-    return state_num - 10
-
-
-def getRightOf(state_num):
-    return state_num + 1
-
-
-def getDownwardsOf(state_num):
-    return state_num + 10
-
-
-def getLeftOf(state_num):
-    return state_num - 1
-
-
-def isTopRow(state):
-    return True if state - 10 < 0 else False
-
-
-def isRightCol(state):
-    return True if state % 10 == 9 else False
-
-
-def isBottomRow(state):
-    return True if state + 10 >= 100 else False
-
-
-def isLeftCol(state):
-    return True if state % 10 == 0 else False
-
-
-def hasWallEast(state):
-    return True if (
-        (state % 10 == 4 and state != 24 and state != 74)
-        or
-        (isRightCol(state)))\
-        else False
-
-
-def hasWallWest(state):
-    return True if (
-        (state % 10 == 5 and state != 25 and state != 75)
-        or
-        (isLeftCol(state)))\
-        else False
-
-
-def hasWallNorth(state):
-    return True if (
-        (state >= 50 and state < 60 and state != 52 and state != 57)
-        or
-        (isTopRow(state)))\
-        else False
-
-
-def hasWallSouth(state):
-    return True if (
-        (state >= 40 and state < 50 and state != 42 and state != 47)
-        or
-        (isBottomRow(state)))\
-        else False
 
 
 if __name__ == '__main__':

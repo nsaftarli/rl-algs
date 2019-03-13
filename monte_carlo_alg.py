@@ -12,10 +12,11 @@ RIGHT = 1
 DOWN = 2
 LEFT  = 3
 
+actionNtoS = ['up', 'right', 'down', 'left']
+
 def monte_carlo_alg(p1, p2):
     # Transition table is invisible to agent, but controls the dynamics of the grid
     transition_table = createStochastic(p1, p2)
-    # Rewards are -1 for all but the final state which is +100
     reward_table = state_rewards()
     # Action value function starts as 0 for all action-state pairs
     qSa = np.zeros((100, 4))
@@ -30,7 +31,8 @@ def monte_carlo_alg(p1, p2):
         for a in range(4):
             returns[(s, a)] = []
 
-    for q in range(1):
+    for q in range(500):
+        print("Iteration: ", str(q))
         episode = generate_episode(pi_sa, transition_table, reward_table)
         while episode is None:
             pi_sa = init_policy(epsilon=EPSILON)
@@ -63,8 +65,17 @@ def monte_carlo_alg(p1, p2):
                     else:
                         pi_sa[s, a] = EPSILON/4
 
-        print(pi_sa)
-        print(len(episode))
+        # print(pi_sa)
+        # print(len(episode))
+
+    policy_maxes = np.argmax(pi_sa, axis=1)
+    # print([actionNtoS[j] for j in policy_words])
+    # print(policy_words)
+    # for i, act in enumerate(policy_words):
+        # print("Cell: ", str(i), " Action: ", actionNtoS[act])
+
+    print_policy(policy_maxes)
+
 
 def generate_episode(policy, probs, rewards):
     episode = []
@@ -85,16 +96,18 @@ def generate_episode(policy, probs, rewards):
         # Get the next state according to current state, action, and board dynamics
         state = get_next_state(state, action, probs)
 
-        if steps >= 30000:
-            print("RESTARTING")
-            time.sleep(1)
+        if steps >= 500:
+            # print("RESTARTING")
+            # time.sleep(0.1)
             return None
 
+    if state == 9:
+        action = np.random.randint(0, 4)
     episode.append((state, action))
     states.append(state)
-    print("EPISODE LENGTH IS: ", len(episode))
-    print(states)
-    print("STEPS TAKEN: ", steps)
+    # print("EPISODE LENGTH IS: ", len(episode))
+    # print(states)
+    # print("STEPS TAKEN: ", steps)
     return episode
 
 def get_next_state(state, action, probs):
@@ -120,7 +133,7 @@ def get_next_state(state, action, probs):
         distrib_states.append(i)
 
     # Sample a next state based on the probability distribution given.
-    print(distrib)
+    # print(distrib)
     next_state = np.random.choice(distrib_states, p=distrib)
     return next_state
 
