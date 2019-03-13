@@ -24,6 +24,7 @@ def monte_carlo_alg(p1, p2):
 
     episode = generate_episode(pi_sa, transition_table, reward_table)
     while episode is None:
+        pi_sa = init_policy(epsilon=EPSILON)
         episode = generate_episode(pi_sa, transition_table, reward_table)
 
 
