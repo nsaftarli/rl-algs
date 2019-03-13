@@ -57,14 +57,15 @@ def get_next_state(state, action, probs):
     # Append the probability of self-transitioning
     distrib.append(probs[state, action, state])
     distrib_states.append(state)
-    print(distrib)
-    print(distrib_states)
+    # print(distrib)
+    # print(distrib_states)
     # Go through adjacent state array and append probability of transitioning to them
     for i in next_states[2]:
         distrib.append(probs[state, action, i])
         distrib_states.append(i)
 
     # Sample a next state based on the probability distribution given.
+    print(distrib)
     next_state = np.random.choice(distrib_states, p=distrib)
     return next_state
 
