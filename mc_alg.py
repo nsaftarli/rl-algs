@@ -74,7 +74,6 @@ def evaluate_episode(episode, qSa, returns, k, n_seen):
             else:
                 G = 100
             returns[s, a] = returns[s, a] + ((1/n_seen[s, a]) * (G - returns[s, a]))
-            # print(returns[s, a])
             qSa[s, a] = returns[s, a]
     return qSa, returns, n_seen
 
@@ -95,7 +94,7 @@ def generate_episode(pi):
         
         # if state == 9:
         #     break
-        if steps >= 100:
+        if steps >= 1000:
             return episode
     episode.append((9, 0))
     return episode

@@ -73,10 +73,20 @@ def print_policy(pi):
 
     buff = ''
     for i, act in enumerate(pi):
-        if i % 10 == 0:
+        if i % 10 == 5 and i != 25 and i != 75:
+            buff += '|'
+        if i == 25 or i == 75:
+            buff += ' '
+        if i == 60:
+            print('-- -- -- --')
+        if i % 10 == 0 and i != 0:
             print(buff)
             buff = ''
         buff += unicode_map[act]
+        # if i % 10 == 0 and i != 0:
+        #     print(buff)
+        #     buff = ''
+    print(buff)
 
 
 
