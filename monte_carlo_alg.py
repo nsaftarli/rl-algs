@@ -22,13 +22,49 @@ def monte_carlo_alg(p1, p2):
     # Policy is randomly initialized to epsilon-soft and is (100, 4)
     pi_sa = init_policy(epsilon=EPSILON)
 
-    episode = generate_episode(pi_sa, transition_table, reward_table)
-    while episode is None:
-        pi_sa = init_policy(epsilon=EPSILON)
+    returns = np.zeros((100, 4))
+    returnsCount = np.zeros((100, 4))
+
+    returns = {}
+    for s in range(100):
+        for a in range(4):
+            returns[(s, a)] = []
+
+    for q in range(1):
         episode = generate_episode(pi_sa, transition_table, reward_table)
+        while episode is None:
+            pi_sa = init_policy(epsilon=EPSILON)
+            episode = generate_episode(pi_sa, transition_table, reward_table)
 
+        stateActionSet = set()
 
+        for i, (s, a) in enumerate(episode):
+            if (s, a) not in stateActionSet:
+                stateActionSet.add((s, a))
 
+                returnsCount[s, a] += 1
+
+                if not s == 9:
+                    returns[(s, a)].append(-1 * i)
+                else:
+                    returns[(s, a)].append(100)
+
+                qSa[s, a] = np.average(returns[(s, a)])
+
+        stateSet = set()
+
+        for (s, a) in episode:
+            if (s) not in stateSet:
+                stateSet.add((s))
+                a_opt = np.argmax(qSa[s, :])
+                for a in range(4):
+                    if a == a_opt:
+                        pi_sa[s, a] = 1 - EPSILON + EPSILON/4
+                    else:
+                        pi_sa[s, a] = EPSILON/4
+
+        print(pi_sa)
+        print(len(episode))
 
 def generate_episode(policy, probs, rewards):
     episode = []
@@ -56,6 +92,7 @@ def generate_episode(policy, probs, rewards):
 
     episode.append((state, action))
     states.append(state)
+    print("EPISODE LENGTH IS: ", len(episode))
     print(states)
     print("STEPS TAKEN: ", steps)
     return episode
@@ -89,4 +126,4 @@ def get_next_state(state, action, probs):
 
 
 if __name__ == '__main__':
-    monte_carlo_alg(0.75, 0.2)
+    monte_carlo_alg(1, 0)
