@@ -22,55 +22,64 @@ PROBS = createStochastic(1.0, 0.0)
 def main():
     qSa, returns, pi = initialize_mc()
 
-    for k in range(40000):
-        print(k)
+    n_seen = np.zeros((100, 4))
+
+    for k in range(10000):
+        # a) generate an episode using pi
         episode = generate_episode(pi)
-        # while episode is None:
-        #     pi = init_policy(EPSILON)
-        #     episode = generate_episode(pi)
-        qSa, returns = evaluate_episode(episode, qSa, returns, k)
-        pi = greedify_policy(pi, qSa, episode)
+        while episode is None:
+            episode = generate_episode(pi)
+        # b) Evaluate action-value function
+        qSa, returns, n_seen = evaluate_episode(episode, qSa, returns, k, n_seen)
+        # c) improve policy
+        pi = greedify_policy(pi, qSa)
+
+        print(k)
         print_policy(np.argmax(pi, axis=1))
 
-    print_policy(np.argmax(pi, axis=1))
+    # print_policy(np.argmax(pi, axis=1))
     print(returns[19, :])
 
 
 def initialize_mc():
     qSa = np.zeros((N_STATES, N_ACTIONS))
     pi = init_policy(EPSILON)
-    returns = np.zeros((100, 4))
+    returns = np.zeros((N_STATES, N_ACTIONS))
     return qSa, returns, pi
 
-def greedify_policy(pi, Q, episode):
+def greedify_policy(pi, Q):
     best_actions = np.argmax(Q, axis=1)
-    for (s, _) in episode:
-        optimal_action = best_actions[s]
-        pi[s, :] = EPSILON / N_ACTIONS
-        pi[s, optimal_action] += (1 - EPSILON)
+
+    for state in range(N_STATES):
+        optimal_action = best_actions[state]
+        pi[state, :] = EPSILON / N_ACTIONS
+        pi[state, optimal_action] += (1 - EPSILON)
+    # for (s, _) in episode:
+    #     optimal_action = best_actions[s]
+    #     pi[s, :] = EPSILON / N_ACTIONS
+    #     pi[s, optimal_action] += (1 - EPSILON)
     return pi
 
 
 
-def evaluate_episode(episode, qSa, returns, k):
+def evaluate_episode(episode, qSa, returns, k, n_seen):
     unique_s_a_pairs = set()
+    len_episode = len(episode)
     for i, (s, a) in enumerate(episode):
         if (s, a) not in unique_s_a_pairs:
             unique_s_a_pairs.add((s, a))
+            n_seen[s, a] += 1
             if s != 9:
-                G = -1
+                G = (len_episode - i) * -1
             else:
-                G = -1 + 100
-            # print('slkdfjlaksdjf')
-            # print((s, a))
-            # returns[s, a].append(G)
-            returns[s, a] = returns[s, a] + (1/(k+1)) * (G - returns[s, a])
-            # qSa[s, a] = np.mean(returns[s, a])
+                G = 100
+            returns[s, a] = returns[s, a] + ((1/n_seen[s, a]) * (G - returns[s, a]))
+            # print(returns[s, a])
             qSa[s, a] = returns[s, a]
-    # returns = new_returns
-    return qSa, returns
+    return qSa, returns, n_seen
 
 
+# a) generate an episode using pi
 def generate_episode(pi):
     # pi is a (100, 4) array. pi[x, a] specifies the probability of taking action a in state x
     episode = []

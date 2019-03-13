@@ -12,3 +12,7 @@ def epsilon_soft_action(eps, actions):
     prob_actions = np.full((4,), eps/len(actions))
     prob_actions[np.argmax(actions)] = 1 - eps + eps/len(actions)
     return prob_actions
+
+# def epsilon_soft_update(epsilon, pi, optimal, actions):
+#     pi[]
+
