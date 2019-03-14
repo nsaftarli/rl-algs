@@ -94,7 +94,7 @@ def generate_episode(pi):
         
         # if state == 9:
         #     break
-        if steps >= 1000:
+        if steps >= 100:
             return episode
     episode.append((9, 0))
     return episode

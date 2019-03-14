@@ -11,5 +11,17 @@ def init_policy(epsilon):
 
     return pi
 
+def init_policy_egreedy(epsilon):
+    pi = np.zeros((100, 4))
+    roll = np.random.rand()
+    if roll > epsilon:
+        # exploit
+        pass
+    else:
+        # explore
+        pass
+
+
+
 if __name__ == '__main__':
     init_policy(0.1)

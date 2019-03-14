@@ -16,3 +16,7 @@ def epsilon_soft_action(eps, actions):
 # def epsilon_soft_update(epsilon, pi, optimal, actions):
 #     pi[]
 
+def derive_policy(Q, s, epsilon):
+    actions = Q[s]
+    action = greedyActionSelect(epsilon=epsilon, actions=actions)
+    return action
