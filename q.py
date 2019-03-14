@@ -66,7 +66,7 @@ def main(iterations, p1, p2, alpha, gamma, epsilon):
         policy = np.argmax(qSa, axis=1)
         print(nSteps)
         print_policy(policy)
-
+    return policy
 
 if __name__ == '__main__':
     main()
