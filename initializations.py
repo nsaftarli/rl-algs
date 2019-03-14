@@ -1,3 +1,6 @@
+# Nariman Saftarli - 500615448
+# Nimrod Vanir - 500699818
+
 import numpy as np
 
 
