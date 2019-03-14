@@ -8,8 +8,7 @@ from utils import *
 # from init_returns import *
 from initializations import *
 
-GAMMA = 0.9
-EPSILON = 0.1
+
 UP = 0
 RIGHT = 1
 DOWN = 2
@@ -17,11 +16,8 @@ LEFT = 3
 ACTIONS = [UP, RIGHT, DOWN, LEFT]
 N_ACTIONS = 4
 N_STATES = 100
-ENV = Environment(1.0, 0.0)
 
 config = {}
-config['GAMMA'] = GAMMA
-config['EPSILON'] = EPSILON
 config['UP'] = UP
 config['RIGHT'] = RIGHT
 config['DOWN'] = DOWN
@@ -29,13 +25,18 @@ config['LEFT'] = LEFT
 config['ACTIONS'] = ACTIONS
 config['N_ACTIONS'] = N_ACTIONS
 config['N_STATES'] = N_STATES
-config['ENV'] = ENV
 
 
-def main():
+def main(iterations, p1, p2, alpha, gamma, epsilon):
+    ENV = Environment(p1, p2)
+    GAMMA = gamma
+    EPSILON = epsilon
+    config['ENV'] = ENV
+    config['GAMMA'] = GAMMA
+    config['EPSILON'] = EPSILON
     qSa, returns, pi, n_seen = init_mc(config)
 
-    for k in range(1000):
+    for k in range(iterations):
         # a) generate an episode using pi
         episode = generate_episode(pi, config)
         # b) Evaluate action-value function
@@ -52,8 +53,8 @@ def greedify_policy(pi, Q):
 
     for state in range(N_STATES):
         optimal_action = best_actions[state]
-        pi[state, :] = EPSILON / N_ACTIONS
-        pi[state, optimal_action] += (1 - EPSILON)
+        pi[state, :] = config['EPSILON'] / N_ACTIONS
+        pi[state, optimal_action] += (1 - config['EPSILON'])
 
     return pi
 

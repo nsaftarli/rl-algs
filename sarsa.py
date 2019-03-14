@@ -5,9 +5,6 @@ from utils import *
 from action_select import *
 from initializations import *
 
-ALPHA = 0.1
-GAMMA = 0.9
-EPSILON = 0.1
 UP = 0
 RIGHT = 1
 DOWN = 2
@@ -15,11 +12,8 @@ LEFT = 3
 ACTIONS = [UP, RIGHT, DOWN, LEFT]
 N_ACTIONS = 4
 N_STATES = 100
-ENV = Environment(1.0, 0.0)
 
 config = {}
-config['GAMMA'] = GAMMA
-config['EPSILON'] = EPSILON
 config['UP'] = UP
 config['RIGHT'] = RIGHT
 config['DOWN'] = DOWN
@@ -27,16 +21,24 @@ config['LEFT'] = LEFT
 config['ACTIONS'] = ACTIONS
 config['N_ACTIONS'] = N_ACTIONS
 config['N_STATES'] = N_STATES
-config['ENV'] = ENV
 
 
-def main():
+def main(iterations, p1, p2, alpha, gamma, epsilon):
+    ENV = Environment(p1, p2)
+    ALPHA = alpha
+    GAMMA = gamma
+    EPSILON = epsilon
+    config['ENV'] = ENV
+    config['ALPHA'] = ALPHA
+    config['GAMMA'] = GAMMA
+    config['EPSILON'] = EPSILON
+
     qSa = np.zeros((N_STATES, N_ACTIONS))
     pi = init_policy_esoft(EPSILON, N_STATES, N_ACTIONS)
     rewards = np.full((N_STATES,), -1)
     rewards[9] = 100
 
-    for k in range(1000):
+    for k in range(iterations):
         print(k)
         # initialize S
         start_state = np.random.randint(0, N_STATES)
