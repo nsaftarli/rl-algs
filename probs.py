@@ -6,6 +6,25 @@ RIGHT = 1
 DOWN = 2
 LEFT = 3
 
+class Environment():
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+        self.probs = createStochastic(self.p1, self.p2)
+        self.rewards = np.full((100,), -1)
+        self.rewards[9] = 100
+
+    def get_transitions(self):
+        return self.probs
+
+    def get_reward(self, state):
+        return self.rewards[state]
+
+    def pick_next_state(self, state, action):
+        next_state_probs = self.probs[state, action]
+        next_state = np.random.choice(list(range(100)), p=next_state_probs)
+        return next_state
+
 
 # For modeling the unknown transition probabilities
 def createStochastic(p1, p2):
@@ -198,7 +217,12 @@ def getLeftwardsAdjacents(state):
         else:
             return [stateLeft - 10, stateLeft + 10]
 
-
+# Given a state, action, and environment, pick the next state stochastically
+# Invisible to agent
+# def pick_next_state(state, action, probs):
+#     next_state_probs = probs[state, action, :]
+#     next_state = np.random.choice(list(range(100)), p=next_state_probs)
+#     return next_state
 
 if __name__ == '__main__':
     createStochastic(1, 0)

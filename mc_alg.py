@@ -1,11 +1,12 @@
 import numpy as np
 import time
 from probs import *
-from state_rewards import *
+# from state_rewards import *
 from utils import *
-from action_select import *
-from init_policy import *
-from init_returns import *
+# from action_select import *
+# from init_policy import *
+# from init_returns import *
+from initializations import *
 
 GAMMA = 0.9
 EPSILON = 0.1
@@ -16,19 +17,27 @@ LEFT = 3
 ACTIONS = [UP, RIGHT, DOWN, LEFT]
 N_ACTIONS = 4
 N_STATES = 100
-PROBS = createStochastic(1.0, 0.0)
+ENV = Environment(1.0, 0.0)
+
+config = {}
+config['GAMMA'] = GAMMA
+config['EPSILON'] = EPSILON
+config['UP'] = UP
+config['RIGHT'] = RIGHT
+config['DOWN'] = DOWN
+config['LEFT'] = LEFT
+config['ACTIONS'] = ACTIONS
+config['N_ACTIONS'] = N_ACTIONS
+config['N_STATES'] = N_STATES
+config['ENV'] = ENV
 
 
 def main():
-    qSa, returns, pi = initialize_mc()
+    qSa, returns, pi, n_seen = init_mc(config)
 
-    n_seen = np.zeros((100, 4))
-
-    for k in range(10000):
+    for k in range(1000):
         # a) generate an episode using pi
-        episode = generate_episode(pi)
-        while episode is None:
-            episode = generate_episode(pi)
+        episode = generate_episode(pi, config)
         # b) Evaluate action-value function
         qSa, returns, n_seen = evaluate_episode(episode, qSa, returns, k, n_seen)
         # c) improve policy
@@ -37,15 +46,6 @@ def main():
         print(k)
         print_policy(np.argmax(pi, axis=1))
 
-    # print_policy(np.argmax(pi, axis=1))
-    print(returns[19, :])
-
-
-def initialize_mc():
-    qSa = np.zeros((N_STATES, N_ACTIONS))
-    pi = init_policy(EPSILON)
-    returns = np.zeros((N_STATES, N_ACTIONS))
-    return qSa, returns, pi
 
 def greedify_policy(pi, Q):
     best_actions = np.argmax(Q, axis=1)
@@ -54,12 +54,8 @@ def greedify_policy(pi, Q):
         optimal_action = best_actions[state]
         pi[state, :] = EPSILON / N_ACTIONS
         pi[state, optimal_action] += (1 - EPSILON)
-    # for (s, _) in episode:
-    #     optimal_action = best_actions[s]
-    #     pi[s, :] = EPSILON / N_ACTIONS
-    #     pi[s, optimal_action] += (1 - EPSILON)
-    return pi
 
+    return pi
 
 
 def evaluate_episode(episode, qSa, returns, k, n_seen):
@@ -79,34 +75,24 @@ def evaluate_episode(episode, qSa, returns, k, n_seen):
 
 
 # a) generate an episode using pi
-def generate_episode(pi):
+def generate_episode(pi, config):
     # pi is a (100, 4) array. pi[x, a] specifies the probability of taking action a in state x
     episode = []
+    ENV = config['ENV']
     steps = 0
     state = np.random.randint(0, N_STATES)
     action = np.random.choice(ACTIONS, p=pi[state])
     episode.append((state, action))
     while state != 9:
         steps += 1
-        state = pick_next_state(state, action)
+        state = ENV.pick_next_state(state, action)
         action = np.random.choice(ACTIONS, p=pi[state])
         episode.append((state, action))
-        
-        # if state == 9:
-        #     break
+
         if steps >= 100:
             return episode
     episode.append((9, 0))
     return episode
-
-
-
-
-def pick_next_state(state, action):
-    next_state_probs = PROBS[state, action, :]
-    next_state = np.random.choice(list(range(100)), p=next_state_probs)
-    return next_state
-
 
 
 if __name__ == '__main__':
