@@ -12,9 +12,6 @@ def init_policy_esoft(epsilon, N_STATES, N_ACTIONS):
     return pi
 
 
-def init_returns():
-    pass
-
 
 def init_mc(config):
     N_STATES = config['N_STATES']
@@ -27,10 +24,3 @@ def init_mc(config):
     return qSa, returns, pi, n_seen
 
 
-# def init_returns(states, actions):
-#     returns = np.empty((states, actions), dtype=object)
-#     for i in range(states):
-#         for j in range(actions):
-#             returns[i, j] = []
-
-#     return returns

@@ -39,8 +39,11 @@ def main(iterations, p1, p2, alpha, gamma, epsilon):
     rewards[9] = 100
 
     for k in range(iterations):
-        print(k)
+        # print(k)
         # initialize S
+        if k != 0 and k % 100 == 0:
+            EPSILON = EPSILON / 2
+            config['EPSILON'] = EPSILON
         start_state = np.random.randint(0, N_STATES)
         state = start_state
 
@@ -64,9 +67,11 @@ def main(iterations, p1, p2, alpha, gamma, epsilon):
                 break
 
         policy = np.argmax(qSa, axis=1)
-        print(nSteps)
-        print_policy(policy)
-    return policy
+        # print(nSteps)
+        # print_policy(policy)
+    print_policy(policy)
+    avg_val = np.mean(np.amax(qSa, axis=1))
+    return policy, avg_val
 
 if __name__ == '__main__':
     main()

@@ -44,10 +44,12 @@ def main(iterations, p1, p2, alpha, gamma, epsilon):
         # c) improve policy
         pi = greedify_policy(pi, qSa)
 
-        print(k)
-        print_policy(np.argmax(pi, axis=1))
 
-    return np.argmax(pi, axis=1)
+    # return np.argmax(pi, axis=1)
+    policy = np.argmax(pi, axis=1)
+    print_policy(policy)
+    avg_val = np.mean(np.amax(qSa, axis=1))
+    return pi, avg_val
 
 def greedify_policy(pi, Q):
     best_actions = np.argmax(Q, axis=1)

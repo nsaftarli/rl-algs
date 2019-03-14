@@ -116,7 +116,7 @@ def draw_policy(pi, params):
     d = ImageDraw.Draw(img)
     unicode_font = ImageFont.truetype("DejaVuSansMono.ttf", 32)
     d.text((10, 10), text, font=unicode_font, fill=(0,0,0))
-    img.save('./Report/images/' + filename + '.jpg')
+    img.save('./Report/images/' + filename + 'reduce_e.jpg')
 
 if __name__ == '__main__':
     draw_policy([0, 1, 2, 3, 0, 1, 2, 3, 2, 3,

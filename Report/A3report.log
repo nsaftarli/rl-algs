@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 MAR 2019 10:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  14 MAR 2019 18:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -139,34 +139,67 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen113
 \Gin@req@width=\dimen114
 )
+(/usr/local/texlive/2016/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen115
+\captionmargin@=\dimen116
+\captionwidth=\dimen117
+\caption@tempdima=\dimen118
+\caption@indent=\dimen119
+\caption@parindent=\dimen120
+\caption@hangindent=\dimen121
+)
+\c@ContinuedFloat=\count101
+)
+\c@KVtest=\count102
+\sf@farskip=\skip46
+\sf@captopadj=\dimen122
+\sf@capskip=\skip47
+\sf@nearskip=\skip48
+\c@subfigure=\count103
+\c@subfigure@save=\count104
+\c@lofdepth=\count105
+\c@subtable=\count106
+\c@subtable@save=\count107
+\c@lotdepth=\count108
+\sf@top=\skip49
+\sf@bottom=\skip50
+)
 (./A3report.aux)
 \openout1 = `A3report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count101
-\scratchdimen=\dimen115
+\scratchcounter=\count109
+\scratchdimen=\dimen123
 \scratchbox=\box28
-\nofMPsegments=\count102
-\nofMParguments=\count103
+\nofMPsegments=\count110
+\nofMParguments=\count111
 \everyMPshowfont=\toks20
-\MPscratchCnt=\count104
-\MPscratchDim=\dimen116
-\MPnumerator=\count105
-\makeMPintoPDFobject=\count106
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen124
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
 \everyMPtoPDFconversion=\toks21
 ) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
@@ -215,36 +248,212 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 19.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 19.
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./A3re
-port.aux) ) 
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<./images/q_1000_0p05_0p1.jpg, id=10, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p05_0p1.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p05_0p1.jpg>
+Package pdftex.def Info: ./images/q_1000_0p05_0p1.jpg used on input line 43.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/q_1000_0p1_0p1.jpg, id=11, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p1_0p1.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p1_0p1.jpg>
+Package pdftex.def Info: ./images/q_1000_0p1_0p1.jpg used on input line 43.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/q_1000_0p2_0p1.jpg, id=12, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p2_0p1.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p2_0p1.jpg>
+Package pdftex.def Info: ./images/q_1000_0p2_0p1.jpg used on input line 43.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+Overfull \hbox (67.40529pt too wide) in paragraph at lines 42--46
+[][] 
+ []
+
+<./images/sarsa_1000_0p05_0p1.jpg, id=13, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p05_0p1.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p05_0p1.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p05_0p1.jpg used on input line 51
+.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/sarsa_1000_0p1_0p1.jpg, id=14, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p1_0p1.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p1_0p1.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p1_0p1.jpg used on input line 51.
+
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/sarsa_1000_0p2_0p1.jpg, id=15, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p2_0p1.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p2_0p1.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p2_0p1.jpg used on input line 51.
+
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+Overfull \hbox (67.40529pt too wide) in paragraph at lines 50--54
+[][] 
+ []
+
+<./images/avg_alpha0p05.png, id=16, 565.11125pt x 431.6125pt>
+File: ./images/avg_alpha0p05.png Graphic file (type png)
+
+<use ./images/avg_alpha0p05.png>
+Package pdftex.def Info: ./images/avg_alpha0p05.png used on input line 59.
+(pdftex.def)             Requested size: 141.27747pt x 107.90285pt.
+
+<./images/avg_alpha0p1.png, id=18, 579.16376pt x 431.6125pt>
+File: ./images/avg_alpha0p1.png Graphic file (type png)
+
+<use ./images/avg_alpha0p1.png>
+Package pdftex.def Info: ./images/avg_alpha0p1.png used on input line 59.
+(pdftex.def)             Requested size: 144.79057pt x 107.90285pt.
+
+<./images/avg_alpha0p2.png, id=19, 562.1pt x 429.605pt>
+File: ./images/avg_alpha0p2.png Graphic file (type png)
+
+<use ./images/avg_alpha0p2.png>
+Package pdftex.def Info: ./images/avg_alpha0p2.png used on input line 59.
+(pdftex.def)             Requested size: 140.52466pt x 107.40099pt.
+
+Overfull \hbox (117.5927pt too wide) in paragraph at lines 58--62
+[][] 
+ []
+
+<./images/sarsa_1000_0p05_0p1reduce_e.jpg, id=20, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p05_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p05_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p05_0p1reduce_e.jpg used on input
+ line 68.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/sarsa_1000_0p1_0p1reduce_e.jpg, id=21, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p1_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p1_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p1_0p1reduce_e.jpg used on input 
+line 68.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/sarsa_1000_0p2_0p1reduce_e.jpg, id=22, 250.9375pt x 401.5pt>
+File: ./images/sarsa_1000_0p2_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/sarsa_1000_0p2_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/sarsa_1000_0p2_0p1reduce_e.jpg used on input 
+line 68.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+Overfull \hbox (67.40529pt too wide) in paragraph at lines 67--71
+[][] 
+ []
+
+<./images/q_1000_0p05_0p1reduce_e.jpg, id=23, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p05_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p05_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/q_1000_0p05_0p1reduce_e.jpg used on input lin
+e 76.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/q_1000_0p1_0p1reduce_e.jpg, id=24, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p1_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p1_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/q_1000_0p1_0p1reduce_e.jpg used on input line
+ 76.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+<./images/q_1000_0p2_0p1reduce_e.jpg, id=25, 250.9375pt x 401.5pt>
+File: ./images/q_1000_0p2_0p1reduce_e.jpg Graphic file (type jpg)
+
+<use ./images/q_1000_0p2_0p1reduce_e.jpg>
+Package pdftex.def Info: ./images/q_1000_0p2_0p1reduce_e.jpg used on input line
+ 76.
+(pdftex.def)             Requested size: 125.46843pt x 200.7495pt.
+
+Overfull \hbox (67.40529pt too wide) in paragraph at lines 75--79
+[][] 
+ []
+
+<./images/avg_alpha0p05e.png, id=26, 680.5425pt x 428.60126pt>
+File: ./images/avg_alpha0p05e.png Graphic file (type png)
+
+<use ./images/avg_alpha0p05e.png>
+Package pdftex.def Info: ./images/avg_alpha0p05e.png used on input line 85.
+(pdftex.def)             Requested size: 136.10608pt x 85.71872pt.
+
+<./images/avg_alpha0p1e.png, id=27, 666.49pt x 438.63875pt>
+File: ./images/avg_alpha0p1e.png Graphic file (type png)
+
+<use ./images/avg_alpha0p1e.png>
+Package pdftex.def Info: ./images/avg_alpha0p1e.png used on input line 85.
+(pdftex.def)             Requested size: 133.29564pt x 87.72618pt.
+
+<./images/avg_alpha0p2e.png, id=28, 658.46pt x 436.63126pt>
+File: ./images/avg_alpha0p2e.png Graphic file (type png)
+
+<use ./images/avg_alpha0p2e.png>
+Package pdftex.def Info: ./images/avg_alpha0p2e.png used on input line 85.
+(pdftex.def)             Requested size: 131.68967pt x 87.32469pt.
+
+Overfull \hbox (92.09138pt too wide) in paragraph at lines 84--88
+[][] 
+ []
+
+[2] [3 <./images/q_1000_0p05_0p1.jpg> <./images/q_1000_0p1_0p1.jpg> <./images/q
+_1000_0p2_0p1.jpg> <./images/sarsa_1000_0p05_0p1.jpg> <./images/sarsa_1000_0p1_
+0p1.jpg> <./images/sarsa_1000_0p2_0p1.jpg>] [4 <./images/avg_alpha0p05.png> <./
+images/avg_alpha0p1.png> <./images/avg_alpha0p2.png> <./images/sarsa_1000_0p05_
+0p1reduce_e.jpg> <./images/sarsa_1000_0p1_0p1reduce_e.jpg> <./images/sarsa_1000
+_0p2_0p1reduce_e.jpg>] [5 <./images/q_1000_0p05_0p1reduce_e.jpg> <./images/q_10
+00_0p1_0p1reduce_e.jpg> <./images/q_1000_0p2_0p1reduce_e.jpg> <./images/avg_alp
+ha0p05e.png> <./images/avg_alpha0p1e.png> <./images/avg_alpha0p2e.png>]
+(./A3report.aux) ) 
 Here is how much of TeX's memory you used:
- 2780 strings out of 493014
- 36665 string characters out of 6133351
- 100255 words of memory out of 5000000
- 6288 multiletter control sequences out of 15000+600000
- 8753 words of font info for 34 fonts, out of 8000000 for 9000
+ 4088 strings out of 493014
+ 61329 string characters out of 6133351
+ 132158 words of memory out of 5000000
+ 7562 multiletter control sequences out of 15000+600000
+ 10760 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,26p,258b,236s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
-.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.
-pfb>
-Output written on A3report.pdf (1 page, 35472 bytes).
+ 44i,12n,42p,1219b,321s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r17.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
+.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
+b></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+
+Output written on A3report.pdf (5 pages, 1624160 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
